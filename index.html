@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REEL UNDERGROUND - Unofficial Archive</title>
+<style>
+  body {
+    background-color: #000000;
+    color: #cccccc;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+  }
+
+  a { color: #ffff00; text-decoration: underline; }
+  a:visited { color: #ff9900; }
+  a:hover { color: #ffffff; background: #ff0000; }
+
+  /* ── TOP BAR ── */
+  #topbar {
+    background: #cc0000;
+    color: #ffffff;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff0000;
+  }
+
+  /* ── HEADER ── */
+  #header {
+    background: #111111;
+    border-bottom: 3px solid #cc0000;
+    padding: 14px 20px 10px;
+    text-align: center;
+  }
+  #header h1 {
+    font-family: "Courier New", monospace;
+    font-size: 28px;
+    color: #ff0000;
+    margin: 0 0 4px 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px #330000;
+  }
+  #header .sub {
+    color: #888888;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  #header .counter {
+    color: #00ff00;
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  /* ── NAV ── */
+  #nav {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    padding: 6px 20px;
+    font-size: 12px;
+  }
+  #nav a { margin-right: 16px; color: #aaaaaa; text-decoration: none; }
+  #nav a:hover { color: #ff0000; text-decoration: underline; }
+
+  /* ── LAYOUT ── */
+  #wrapper {
+    display: table;
+    width: 100%;
+  }
+  #main {
+    display: table-cell;
+    width: 75%;
+    padding: 14px 16px;
+    vertical-align: top;
+  }
+  #sidebar {
+    display: table-cell;
+    width: 25%;
+    padding: 14px 10px;
+    vertical-align: top;
+    border-left: 1px solid #333333;
+    background: #0a0a0a;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    background: #cc0000;
+    color: #ffffff;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    border-left: 4px solid #ff6600;
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  table th {
+    background: #222222;
+    color: #ff9900;
+    padding: 5px 8px;
+    text-align: left;
+    border: 1px solid #444444;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  table td {
+    padding: 5px 8px;
+    border: 1px solid #2a2a2a;
+    vertical-align: top;
+  }
+  table tr:nth-child(even) td { background: #0d0d0d; }
+  table tr:hover td { background: #1a1a00; }
+
+  .new-badge {
+    background: #ff0000;
+    color: #fff;
+    font-size: 9px;
+    padding: 1px 5px;
+    margin-left: 5px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+  }
+  .leak-badge {
+    background: #006600;
+    color: #00ff00;
+    font-size: 9px;
+    padding: 1px 5px;
+    letter-spacing: 1px;
+  }
+  .hot-badge {
+    background: #ff6600;
+    color: #fff;
+    font-size: 9px;
+    padding: 1px 5px;
+    letter-spacing: 1px;
+  }
+  .type-movie { color: #ff6666; font-weight: bold; }
+  .type-series { color: #66aaff; font-weight: bold; }
+
+  .title-link {
+    color: #ffff00;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .title-link:hover { color: #fff; text-decoration: underline; }
+
+  .actor-highlight {
+    color: #000000;
+    background: #00ff00;
+    font-weight: bold;
+    padding: 1px 5px;
+    letter-spacing: 1px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar-box {
+    border: 1px solid #333333;
+    margin-bottom: 14px;
+    background: #111111;
+  }
+  .sidebar-title {
+    background: #333333;
+    color: #ffff00;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .sidebar-content {
+    padding: 8px;
+    font-size: 11px;
+    line-height: 1.8;
+    color: #aaaaaa;
+  }
+  .sidebar-content a { font-size: 11px; }
+
+  /* ── FOOTER ── */
+  #footer {
+    background: #111111;
+    border-top: 2px solid #333333;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 10px;
+    color: #555555;
+    letter-spacing: 1px;
+  }
+
+  /* blinking cursor effect */
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .blink { animation: blink 1s step-start infinite; }
+
+  /* marquee fallback style */
+  marquee { color: #00ff00; font-size: 11px; padding: 3px 0; }
+
+  hr { border: none; border-top: 1px solid #333; margin: 12px 0; }
+  .dot { color: #ff0000; }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  ⚠ UNOFFICIAL ARCHIVE — FOR RESEARCH PURPOSES ONLY ⚠ &nbsp;&nbsp;|&nbsp;&nbsp;
+  <span id="clock"></span>
+</div>
+
+<marquee scrollamount="3">★ BLOODTIDE CAM-RIP NOW AVAILABLE ★ &nbsp;&nbsp; GREY INHERITANCE S01 FULL LEAK ★ &nbsp;&nbsp; MARTHA JOHNATH SPOTTED IN UPCOMING UNTITLED PROJECT ★ &nbsp;&nbsp; NINE MOONS PROTOCOL S03 CONFIRMED LEAK ★ &nbsp;&nbsp; STATIC BLOOM EXTENDED CUT SURFACED ★</marquee>
+
+<div id="header">
+  <h1>☠ REEL UNDERGROUND ☠</h1>
+  <div class="sub">// UNOFFICIAL UNDERGROUND ARCHIVE // EST. 2003 //</div>
+  <div class="counter">[ VISITORS ONLINE: <span style="color:#ff0000">1,337</span> ] &nbsp;|&nbsp; [ FILES INDEXED: <span style="color:#ff0000">15</span> ] &nbsp;|&nbsp; [ LAST UPDATE: <span id="date"></span> ]</div>
+</div>
+
+<div id="nav">
+  <a href="#">Home</a>
+  <a href="#">Movies</a>
+  <a href="#">Series</a>
+  <a href="#">New Leaks</a>
+  <a href="#">Actors</a>
+  <a href="#">Request</a>
+  <a href="#">Forum</a>
+  <a href="#">Contact</a>
+</div>
+
+<div id="wrapper">
+  <div id="main">
+
+    <!-- MOVIES TABLE -->
+    <div class="section-title">&#9654; Leaked Movies (8)</div>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Quality</th>
+        <th>Cast (known)</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>01</td>
+        <td><a class="title-link" href="#">Iron Eclipse</a> <span class="new-badge">NEW</span></td>
+        <td>2142</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>CAM-RIP</td>
+        <td>Dara Vex, Orin Blackwell</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>02</td>
+        <td><a class="title-link" href="#">The Last Cartographer</a></td>
+        <td>2139</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>HDTV</td>
+        <td>Fen Aldric, Cleo Zahar</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>03</td>
+        <td><a class="title-link" href="#">Static Bloom</a> <span class="hot-badge">HOT</span></td>
+        <td>2145</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>EXTENDED CUT</td>
+        <td>Yvaine Cross, Asher Veil</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>04</td>
+        <td><a class="title-link" href="#">Bloodtide</a></td>
+        <td>2147</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>CAM-RIP</td>
+        <td>Olav Wrenn, Fauna Dray</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>05</td>
+        <td><a class="title-link" href="#">Mirrorgate</a></td>
+        <td>2144</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>DVDSCR</td>
+        <td>Cassia Wren, Brom Vael</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>06</td>
+        <td><a class="title-link" href="#">The Pale Signal</a> <span class="new-badge">NEW</span></td>
+        <td>2148</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>WEB-DL</td>
+        <td>Oryn Falk, Sable Dune</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>07</td>
+        <td><a class="title-link" href="#">Ash &amp; Marrow</a></td>
+        <td>2146</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>HDTV</td>
+        <td>Lira Cross, Dorian Vex</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>08</td>
+        <td><a class="title-link" href="#">Null Horizon</a></td>
+        <td>2149</td>
+        <td><span class="type-movie">MOVIE</span></td>
+        <td>CAM-RIP</td>
+        <td>Petra Morne, Halcyon Soot</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+    </table>
+
+    <!-- SERIES TABLE -->
+    <div class="section-title">&#9654; Leaked Series (7)</div>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Episodes</th>
+        <th>Cast (known)</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>09</td>
+        <td><a class="title-link" href="#">Hollow Frequency</a> <span class="hot-badge">HOT</span></td>
+        <td>2140</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01–S03 Full</td>
+        <td>Lena Cross, Bram Onyx</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><a class="title-link" href="#">Pale Dominion</a></td>
+        <td>2141</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01–S02 Full</td>
+        <td>Oberon Lask, Mirra Fenn</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><a class="title-link" href="#">Ember &amp; Bone</a> <span class="new-badge">NEW</span></td>
+        <td>2143</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S03 Finale Leak</td>
+        <td>Seraphine Coldash, Martha Johnath, Iona Redmere</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td><a class="title-link" href="#">Nine Moons Protocol</a></td>
+        <td>2146</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01–S02 Full</td>
+        <td>Evren Holt, Dorian Grask</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><a class="title-link" href="#">Grey Inheritance</a></td>
+        <td>2148</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01 Full</td>
+        <td>Isolde Craven, Theo Blackfen</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td><a class="title-link" href="#">The Severed Relay</a> <span class="hot-badge">HOT</span></td>
+        <td>2147</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01 Partial</td>
+        <td>Caden Frost, Nyx Holloway</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td><a class="title-link" href="#">Voidwatch</a> <span class="new-badge">NEW</span></td>
+        <td>2149</td>
+        <td><span class="type-series">SERIES</span></td>
+        <td>S01E01–E03</td>
+        <td>Remy Darkvale, Sorrel Mace</td>
+        <td><span class="leak-badge">LEAKED</span></td>
+      </tr>
+    </table>
+
+  </div><!-- /main -->
+
+  <div id="sidebar">
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9733; Site Notice</div>
+      <div class="sidebar-content">
+        This site is an <b>unofficial fictional archive</b>.<br>
+        All titles and persons are <b>entirely fictional</b>.<br><br>
+        <span style="color:#ff0000">&#9888; Use at own risk</span>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9660; Actor Spotlight</div>
+      <div class="sidebar-content">
+        <span style="color:#00ff00; font-weight:bold;">Martha Johnath</span><br>
+        Known for:<br>
+        &rarr; Ember &amp; Bone (S03)<br>
+        &rarr; Oracle of the Ashfield<br>
+        &rarr; The Ashen Witness<br><br>
+        <span style="color:#ffff00">Appears in entry #11</span>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9654; Latest Additions</div>
+      <div class="sidebar-content">
+        <a href="#">Iron Eclipse</a><br>
+        <a href="#">The Pale Signal</a><br>
+        <a href="#">Ember &amp; Bone S03</a><br>
+        <a href="#">Voidwatch S01</a><br>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9654; Most Requested</div>
+      <div class="sidebar-content">
+        <a href="#">Static Bloom Extended</a><br>
+        <a href="#">Hollow Frequency S03</a><br>
+        <a href="#">Nine Moons Protocol</a><br>
+        <a href="#">Bloodtide</a><br>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9654; Quality Key</div>
+      <div class="sidebar-content">
+        <span style="color:#ff6666">CAM-RIP</span> = recorded in theater<br>
+        <span style="color:#ffaa00">DVDSCR</span> = screener copy<br>
+        <span style="color:#ffff00">HDTV</span> = broadcast rip<br>
+        <span style="color:#00ff00">WEB-DL</span> = streaming rip<br>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <div class="sidebar-title">&#9658; Stats</div>
+      <div class="sidebar-content">
+        Movies indexed: <b style="color:#ff6666">8</b><br>
+        Series indexed: <b style="color:#66aaff">7</b><br>
+        Total entries: <b style="color:#ffff00">15</b><br>
+        Actors tagged: <b style="color:#00ff00">42</b><br>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+</div><!-- /wrapper -->
+
+<div id="footer">
+  &copy; 2003–2026 REEL UNDERGROUND &nbsp;|&nbsp; ALL TITLES FICTIONAL &nbsp;|&nbsp;
+  <span class="blink">&#9632;</span> ONLINE
+  <br><br>
+  Best viewed in 800x600 resolution &nbsp;|&nbsp; Internet Explorer 6.0+
+</div>
+
+<script>
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString();
+  document.getElementById('date').textContent = now.toLocaleDateString('en-GB');
+  setInterval(() => {
+    document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+  }, 1000);
+</script>
+
+</body>
+</html>
